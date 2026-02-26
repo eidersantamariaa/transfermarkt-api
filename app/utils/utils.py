@@ -1,6 +1,6 @@
 import re
 from typing import Optional, Union
-
+from datetime import datetime
 
 def zip_lists_into_dict(list_keys: list, list_values: list) -> dict:
     """
@@ -138,3 +138,22 @@ def to_camel_case(headers: list) -> list:
     camel_case_headers = [header[0].lower() + header[1:] for header in camel_case_headers]
 
     return [header for header in camel_case_headers]
+
+def clean_response(data):
+    return data
+
+def format_date_dd_mm_yyyy_to_mmm_dd_yyyy(value: str | None) -> str | None:
+    if not value:
+        return value
+
+    value = value.strip()
+
+    # already valid (e.g. "May 11, 1992" or "-")
+    if "," in value or value == "-":
+        return value
+
+    try:
+        dt = datetime.strptime(value, "%d/%m/%Y")
+        return dt.strftime("%b %d, %Y")
+    except ValueError:
+        return value

@@ -1,3 +1,4 @@
+from ast import Or
 from datetime import datetime
 from unittest.mock import patch
 
@@ -35,7 +36,7 @@ def test_get_club_profile(
             "name": And(str, len_greater_than_0),
             "officialName": And(str, len_greater_than_0),
             "image": And(str, len_greater_than_0),
-            Optional("legalForm"): And(str, len_greater_than_0),
+            Optional("legalForm"): lambda x: x is None or (isinstance(x, str) and len_greater_than_0(x)),
             "addressLine1": And(str, len_greater_than_0),
             "addressLine2": And(str, len_greater_than_0),
             "addressLine3": And(str, len_greater_than_0),

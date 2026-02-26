@@ -8,6 +8,7 @@ from schema import And, Or, Schema
 from app.services.clubs.players import TransfermarktClubPlayers
 
 
+
 def test_get_club_players_not_found():
     with pytest.raises(HTTPException):
         TransfermarktClubPlayers(club_id="0")

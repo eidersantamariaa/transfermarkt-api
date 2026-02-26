@@ -11,6 +11,7 @@ from requests import Response, TooManyRedirects
 from app.utils.utils import trim
 from app.utils.xpath import Pagination
 
+from datetime import datetime
 
 @dataclass
 class TransfermarktBase:
@@ -26,7 +27,7 @@ class TransfermarktBase:
 
     URL: str
     page: ElementTree = field(default_factory=lambda: None, init=False)
-    response: dict = field(default_factory=lambda: {}, init=False)
+    response: dict = field(default_factory=lambda: {"updatedAt": datetime.utcnow()}, init=False)
 
     def make_request(self, url: Optional[str] = None) -> Response:
         """

@@ -4,6 +4,8 @@ from app.services.base import TransfermarktBase
 from app.utils.regex import REGEX_DOB
 from app.utils.utils import extract_from_url, safe_regex
 from app.utils.xpath import Clubs
+from app.utils.utils import format_date_dd_mm_yyyy_to_mmm_dd_yyyy
+
 
 
 @dataclass
@@ -87,16 +89,16 @@ class TransfermarktClubPlayers(TransfermarktBase):
                 "id": idx,
                 "name": name,
                 "position": position,
-                "dateOfBirth": dob,
+                "dateOfBirth": format_date_dd_mm_yyyy_to_mmm_dd_yyyy(dob),
                 "age": age,
                 "nationality": nationality,
                 "currentClub": current_club,
                 "height": height,
                 "foot": foot,
-                "joinedOn": joined_on,
+                "joinedOn": format_date_dd_mm_yyyy_to_mmm_dd_yyyy(joined_on),
                 "joined": joined,
                 "signedFrom": signed_from,
-                "contract": contract,
+                "contract": format_date_dd_mm_yyyy_to_mmm_dd_yyyy(contract),
                 "marketValue": market_value,
                 "status": status,
             }

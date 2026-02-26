@@ -28,6 +28,8 @@ def test_get_club_players(
 ):
     tfmkt = TransfermarktClubPlayers(club_id=club_id, season_id=season_id)
     result = tfmkt.get_club_players()
+    print(f"Testing club_id: {club_id}, season_id: {season_id}")
+    print(result)
 
     expected_schema = Schema(
         {
